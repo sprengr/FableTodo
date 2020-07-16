@@ -2,6 +2,7 @@ node_modules/
 
 .fake
 .ionide
+.vscode
 
 src/bin/
 src/obj/
