@@ -6,3 +6,5 @@ node_modules/
 
 src/bin/
 src/obj/
+
+dist/main.js
