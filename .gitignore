@@ -1,0 +1,7 @@
+node_modules/
+
+.fake
+.ionide
+
+src/bin/
+src/obj/
