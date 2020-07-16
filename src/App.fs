@@ -125,12 +125,12 @@ let div (classes: string list) (children: Fable.React.ReactElement list) =
 
 let appTitle =
     Html.p
-        [ prop.className "font-bold text-xl mb-2"
+        [ prop.classes [ Tw.FontBold; Tw.TextXl; Tw.Mb2]
           prop.text "Elmish To-Do List" ]
 
 let inputField (state: State) (dispatch: Msg -> unit) =
-    div [ "w-full"; "max-w-sm" ]
-        [ div [ "flex items-center border-b border-b-2 border-indigo-500 py-2" ]
+    div [ Tw.WFull; Tw.MaxWSm ]
+        [ div [ Tw.Flex; Tw.ItemsCenter; Tw.BorderB; Tw.BorderB2; Tw.BorderIndigo500; Tw.Py2 ]
               [ Html.input
                   [ prop.className
                       "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -158,12 +158,15 @@ let inputField (state: State) (dispatch: Msg -> unit) =
                                                     prop.custom ("clip-rule", "evenodd") ] ] ]
                                       Html.text "Add" ] ] ] ] ] ]
 
+let btnStyle = [ "w-6 inline-flex items-center mr-1 px-1 py-1 text-xs font-thin border border-transparent rounded-md text-white focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out" ]
+let btnStyleColored color =
+    List.append btnStyle [ sprintf "bg-"+color+"-600 hover:bg-"+color+"-500 focus:border-"+color+"-700 active:bg-"+color+"-700" ]
 
 let renderEditTodo (todoBeingEdited: TodoBeingEdited) (dispatch: Msg -> unit) =
     Html.li
         [ prop.children
-            [ div [ "px-4 py-4 sm:px-6" ]
-                  [ div [ "flex items-center justify-between" ]
+            [ div [ Tw.Px4; Tw.Py4; Tw.SmPx6 ]
+                  [ div [ Tw.Flex; Tw.ItemsCenter; Tw.JustifyBetween ]
                         [ Html.input
                             [ prop.className "subtitle"
                               prop.valueOrDefault todoBeingEdited.Description
@@ -171,14 +174,12 @@ let renderEditTodo (todoBeingEdited: TodoBeingEdited) (dispatch: Msg -> unit) =
 
                           div [ "buttons" ]
                               [ Html.button
-                                  [ prop.classes
-                                      [ "w-6 bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 active:bg-indigo-700 inline-flex items-center mr-1 px-1 py-1 text-xs font-thin border border-transparent rounded-md text-white focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out" ]
+                                  [ prop.classes <| btnStyleColored "indigo"
                                     prop.onClick (fun _ -> dispatch ApplyEdit)
                                     prop.children [ Html.i [ prop.classes [ "fa"; "fa-save"; "m-auto" ] ] ] ]
 
                                 Html.button
-                                    [ prop.classes
-                                        [ "w-6 bg-red-600 hover:bg-red-500 focus:border-red-700 active:bg-red-700 inline-flex items-center mr-1 px-1 py-1 text-xs font-thin border border-transparent rounded-md text-white focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out" ]
+                                    [ prop.classes <| btnStyleColored "red"
                                       prop.onClick (fun _ -> dispatch CancelEdit)
                                       prop.children [ Html.i [ prop.classes [ "fa"; "fa-arrow-right"; "m-auto" ] ] ] ] ] ] ] ] ]
 
@@ -203,14 +204,12 @@ let renderTodo (todo: Todo) (dispatch: Msg -> unit) =
                                     prop.children [ Html.i [ prop.classes [ "fa"; "fa-check"; "m-auto" ] ] ] ]
 
                                 Html.button
-                                    [ prop.classes
-                                        [ "w-6 bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 active:bg-indigo-700 inline-flex items-center mr-1 px-1 py-1 text-xs font-thin border border-transparent rounded-md text-white focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out" ]
+                                    [ prop.classes <| btnStyleColored "indigo"
                                       prop.onClick (fun _ -> dispatch (StartEditingTodo todo.Id))
                                       prop.children [ Html.i [ prop.classes [ "fa"; "fa-edit"; "m-auto" ] ] ] ]
 
                                 Html.button
-                                    [ prop.classes
-                                        [ "w-6 text-center bg-red-600 hover:bg-red-500 focus:border-red-700 active:bg-red-700 inline-flex items-center px-1 py-1 text-xs font-thin border border-transparent rounded-md text-white focus:outline-none focus:shadow-outline-indigo transition duration-150 ease-in-out" ]
+                                    [ prop.classes <| btnStyleColored "red"
                                       prop.onClick (fun _ -> dispatch (DeleteTodo todo.Id))
                                       prop.children [ Html.i [ prop.classes [ "fa"; "fa-times"; "m-auto" ] ] ] ] ] ] ] ] ]
 
