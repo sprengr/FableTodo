@@ -41,25 +41,6 @@ let update (msg: Msg) (state: State): State =
     match msg with
     | SetNewTodo newTodo -> { state with NewTodo = newTodo }
 
-    | DeleteTodo todoId ->
-        let nextTodoList =
-            state.TodoList
-            |> List.filter (fun todo -> todo.Id <> todoId)
-
-        { state with TodoList = nextTodoList }
-
-    | ToggleCompleted todoId ->
-        let nextTodoList =
-            state.TodoList
-            |> List.map (fun todo ->
-                if todo.Id = todoId then
-                    { todo with
-                          Completed = not todo.Completed }
-                else
-                    todo)
-
-        { state with TodoList = nextTodoList }
-
     | AddNewTodo when state.NewTodo = "" -> state
 
     | AddNewTodo ->
@@ -78,6 +59,18 @@ let update (msg: Msg) (state: State): State =
 
         { state with
               TodoList = List.append state.TodoList [ nextTodo ] }
+
+    | ToggleCompleted todoId ->
+        let nextTodoList =
+            state.TodoList
+            |> List.map (fun todo ->
+                if todo.Id = todoId then
+                    { todo with
+                          Completed = not todo.Completed }
+                else
+                    todo)
+
+        { state with TodoList = nextTodoList }
 
     | StartEditingTodo todoId ->
         let nextEditModel =
@@ -117,6 +110,13 @@ let update (msg: Msg) (state: State): State =
 
         { state with
               TodoBeingEdited = nextEditModel }
+
+    | DeleteTodo todoId ->
+        let nextTodoList =
+            state.TodoList
+            |> List.filter (fun todo -> todo.Id <> todoId)
+
+        { state with TodoList = nextTodoList }
 
 let div (classes: string list) (children: Fable.React.ReactElement list) =
     Html.div
