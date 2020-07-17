@@ -4,6 +4,7 @@ module ApplicationStyles
 open Zanaptak.TypedCssClasses
 
 type Tw = CssClasses<"https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css", Naming.Underscores>
+type Fa = CssClasses<"https://use.fontawesome.com/releases/v5.8.1/css/all.css", Naming.Underscores>
 
 type ButtonStyle =
     | Small of string
@@ -30,7 +31,7 @@ let btn buttonStyle =
           Tw.ease_in_out
           "bg-" + color + "-600"
           "hover:bg-" + color + "-500"
-          " focus:border-" + color + "-700"
+          "focus:border-" + color + "-700"
           "active:bg-" + color + "-700"
           "focus:shadow-outline-" + color ]
 

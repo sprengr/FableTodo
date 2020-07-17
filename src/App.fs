@@ -183,12 +183,12 @@ let renderEditTodo (todoBeingEdited: TodoBeingEdited) (dispatch: Msg -> unit) =
                               [ Html.button
                                   [ prop.classes <| btn (Small "indigo")
                                     prop.onClick (fun _ -> dispatch ApplyEdit)
-                                    prop.children [ Html.i [ prop.classes [ "fa"; "fa-save"; Tw.m_auto ] ] ] ]
+                                    prop.children [ Html.i [ prop.classes [ Fa.fa; Fa.fa_save; Tw.m_auto ] ] ] ]
 
                                 Html.button
                                     [ prop.classes <| btn (Small "red")
                                       prop.onClick (fun _ -> dispatch CancelEdit)
-                                      prop.children [ Html.i [ prop.classes [ "fa"; "fa-arrow-right"; Tw.m_auto ] ] ] ] ] ] ] ] ]
+                                      prop.children [ Html.i [ prop.classes [ Fa.fa; Fa.fa_arrow_right; Tw.m_auto ] ] ] ] ] ] ] ] ]
 
 let renderTodo (todo: Todo) (dispatch: Msg -> unit) =
     Html.li
@@ -203,17 +203,17 @@ let renderTodo (todo: Todo) (dispatch: Msg -> unit) =
                                   [ prop.classes
                                     <| btn (Small(if todo.Completed then "green" else "indigo"))
                                     prop.onClick (fun _ -> dispatch (ToggleCompleted todo.Id))
-                                    prop.children [ Html.i [ prop.classes [ "fa"; "fa-check"; Tw.m_auto ] ] ] ]
+                                    prop.children [ Html.i [ prop.classes [ Fa.fa; Fa.fa_check; Tw.m_auto ] ] ] ]
 
                                 Html.button
                                     [ prop.classes <| btn (Small "indigo")
                                       prop.onClick (fun _ -> dispatch (StartEditingTodo todo.Id))
-                                      prop.children [ Html.i [ prop.classes [ "fa"; "fa-edit"; Tw.m_auto ] ] ] ]
+                                      prop.children [ Html.i [ prop.classes [ Fa.fa; Fa.fa_edit; Tw.m_auto ] ] ] ]
 
                                 Html.button
                                     [ prop.classes <| btn (Small "red")
                                       prop.onClick (fun _ -> dispatch (DeleteTodo todo.Id))
-                                      prop.children [ Html.i [ prop.classes [ "fa"; "fa-times"; Tw.m_auto ] ] ] ] ] ] ] ] ]
+                                      prop.children [ Html.i [ prop.classes [ Fa.fa; Fa.fa_times; Tw.m_auto ] ] ] ] ] ] ] ] ]
 
 let todoList (state: State) (dispatch: Msg -> unit) =
     Html.ul
