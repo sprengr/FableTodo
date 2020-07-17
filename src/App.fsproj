@@ -3,8 +3,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Stylesheet.fs" />
-    <Compile Include="ApplicationStyles.fs" />
+    <Compile Include="styles/Stylesheet.fs" />
+    <Compile Include="styles/ApplicationStyles.fs" />
     <Compile Include="App.fs" />
   </ItemGroup>
   <ItemGroup>
