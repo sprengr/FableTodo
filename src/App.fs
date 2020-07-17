@@ -153,7 +153,7 @@ let inputField (state: State) (dispatch: Msg -> unit) =
                                 prop.onClick (fun _ -> dispatch AddNewTodo)
                                 prop.children
                                     [ Html.svg
-                                        [ prop.classes [Tw._ml_1; Tw.mr_2; Tw.h_5; Tw.w_5 ]
+                                        [ prop.classes [ Tw._ml_1; Tw.mr_2; Tw.h_5; Tw.w_5 ]
                                           prop.fill "currentColor"
                                           prop.custom ("viewBox", "0 0 20 20")
                                           prop.children
@@ -194,9 +194,11 @@ let renderTodo (todo: Todo) (dispatch: Msg -> unit) =
     Html.li
         [ prop.children
             [ div [ Tw.px_4; Tw.py_4; Tw.sm_px_6 ]
-                  [ div [ Tw.flex; Tw.items_center; Tw.justify_between ]
-                        [ Html.p
-                            [ prop.text todo.Description ]
+                  [ div
+                      [ Tw.flex
+                        Tw.items_center
+                        Tw.justify_between ]
+                        [ Html.p [ prop.text todo.Description ]
 
                           div []
                               [ Html.button
@@ -217,7 +219,7 @@ let renderTodo (todo: Todo) (dispatch: Msg -> unit) =
 
 let todoList (state: State) (dispatch: Msg -> unit) =
     Html.ul
-        [ prop.classes [Tw.w_full; Tw.max_w_sm]
+        [ prop.classes [ Tw.w_full; Tw.max_w_sm ]
           prop.children
               [ for todo in state.TodoList ->
                   match state.TodoBeingEdited with
